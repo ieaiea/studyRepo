@@ -1,21 +1,21 @@
 ## 설치파일
-webstorm IDE : https://www.jetbrains.com/webstorm/ 라이센스 서버 : (http://idea.iteblog.com/key.php)
-Home-brew 설치 : /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" -> brew update
-Node.js & npm 설치 : brew install node
-Json-server : npm i -g json-server
-Browser-sync : npm install -g browser-sync
-esLint : npm install -g eslint eslint-config-airbnb-base eslint-plugin-import / 실행법 : eslint 파일명
+webstorm IDE : https://www.jetbrains.com/webstorm/ 라이센스 서버 : (http://idea.iteblog.com/key.php)         
+Home-brew 설치 : /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" -> brew update        
+Node.js & npm 설치 : brew install node       
+Json-server : npm i -g json-server      
+Browser-sync : npm install -g browser-sync       
+esLint : npm install -g eslint eslint-config-airbnb-base eslint-plugin-import / 실행법 : eslint 파일명      
 
 ### Plugins
-git Tree : https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc?hl=ko
-postman : https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
-Allow-Control-Allow-Origin : https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=ko
-library-detector : https://chrome.google.com/webstore/detail/library-detector/cgaocdmhkmfnkdkbnckgmpopcbpaaejo
-JsonParser : https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=ko
-
+git Tree : https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc?hl=ko      
+postman : https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop      
+Allow-Control-Allow-Origin : https://chrome.google.com/webstore/detail/allow-control-allow- origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=ko        
+library-detector : https://chrome.google.com/webstore/detail/library-detector/cgaocdmhkmfnkdkbnckgmpopcbpaaejo       
+JsonParser : https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=ko           
+ 
 ### TIP
-Intellij Live Template : https://uncle-bae.blogspot.kr/2015/09/intellij-live-template.html
-SSH Key 등록 : https://xho95.github.io/macos/security/openssh/ssh/gitlab/2017/02/21/Using-SSH-on-Mac.html
+Intellij Live Template : https://uncle-bae.blogspot.kr/2015/09/intellij-live-template.html      
+SSH Key 등록 : https://xho95.github.io/macos/security/openssh/ssh/gitlab/2017/02/21/Using-SSH-on-Mac.html    
 
 
 
