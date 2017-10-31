@@ -8,6 +8,8 @@
 webstorm IDE : https://www.jetbrains.com/webstorm/ 
 
 ![라이센스](public/webstorm.png)
+
+
 사진에 보이시는것처럼 라이센스서버 탭 클릭하시고 아래 라이센스 서버를 넣어주시면됩니다.
 라이센스 서버 : (http://idea.iteblog.com/key.php)         
 
@@ -23,7 +25,6 @@ username은 이쁘게 만들어주세요 - 는 금지입니다! (ex.hello-git)
 이쁘게 만들어주셔야 블로그만들때 좋습니다 :) 도메인이 될거라서요 
 
 ### 4. Node 설치 
-
 Mac 쓰시는분들은 brew로 설치해주시면됩니다.
 
 - Home-brew 설치 : /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" -> brew update        
@@ -38,8 +39,6 @@ Allow-Control-Allow-Origin : https://chrome.google.com/webstore/detail/allow-con
 library-detector : https://chrome.google.com/webstore/detail/library-detector/cgaocdmhkmfnkdkbnckgmpopcbpaaejo       
 JsonParser : https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=ko
            
-           
- 
 ### 나중에 쓸거 
 Json-server : npm i -g json-server      
 Browser-sync : npm install -g browser-sync       
