@@ -1,6 +1,3 @@
-/**
- * Created by zach on 16. 11. 7..
- */
 var STORE = {
 	"라이언": [
 		{
