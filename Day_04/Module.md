@@ -100,6 +100,8 @@ var pF = privateFunc() 이런식으로 한번더 함수를 실행시켜서 담�
 위에 방법은 공개 변수가 없는 자바스크립트에 비공개 변수 기능을 만들어주기 떄문에. 이 패턴은 꼭 기억하고 있어야합니다!
 
 ## 팁 
+https://jsfiddle.net/6ouygurx/
+
 간단한 모듈패턴을 알려드리겠습니다.
 ```js
 var Person = (function(){ // 리턴된 생성자함수를 Person 변수에 담고있습니다.
