@@ -7,23 +7,23 @@
 	<title>프렌즈샵</title>
 	<link href="css/reset.css" rel="stylesheet"/>
 	<link href="css/main.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
 </head>
 <body>
 <div class="dktest_wrap">
 	<header id="dktestHead" class="dktest_head">
-		<div class="wrap_tit"><h1 class="tit_main">프렌즈샵</h1></div>
+		<div class="wrap_tit"><h1 class="tit_main">CPDev</h1></div>
 		<div class="wrap_btn_nav">
-			<button class="btn_nav" id="btn_nav">
+			<button class="btn_nav">
 				네비게이션
 			</button>
 		</div>
 		<div class="wrap_nav">
 			<h2 class="screen_out">메인 네비게이션 영역</h2>
 			<nav class="wrap_gnb">
-					<span class="logo_main">
-						<img src="images/logo_main.png" alt="디케이테크인" class="img_logo"/>
-					</span>
+				<span class="logo_main">
+                    <h2>까꿍</h2>
+                    <button class="nav_close">닫기</button>
+                </span>
 				<span class="line_hr"></span>
 				<ul class="gnb">
 					<li><a href="javascript:;" class="link_gnb">Menu1</a></li>
@@ -60,7 +60,6 @@
 						<a href="javascript:;" class="btn_slide btn_prev">왼쪽으로 넘기기</a>
 						<a href="javascript:;" class="btn_slide btn_next">오른쪽으로 넘기기</a>
 						<div class="wrap_slide_nav">
-							<!-- 선택 아이템 -->
 							<ul class="list_slide_nav">
 								<li class="on"></li>
 								<li></li>
@@ -73,17 +72,16 @@
 					<h3 class="screen_out">캐릭터 상품 영역</h3>
 					<div class="tit_friends">
 						<select id="charSelect" class="select_friends">
-							<option value="라이언">라이언</option>
-							<option value="무지">무지</option>
-							<option value="어피치">어피치</option>
+							<option value="default">상품선택</option>
 						</select>
 						<label for="charSelect">캐릭터 상품</label>
 					</div>
 					<div class="total_items">
-						총 <em class="emph_number"><span class="total_number">0</span>개</em>의 상품이 조회되었습니다.
+						총 <em class="emph_number"><span class="total_number">n</span>개</em>의 상품이 조회되었습니다.
 					</div>
 					<div class="wrap_list">
 						<ul class="list_friends">
+							<!-- 상품영역 -->
 						</ul>
 					</div>
 				</div>
@@ -95,12 +93,18 @@
 <footer id="dktestFoot" class="dktest_foot">
 	<div class="inner_foot">
 		<h3 class="screen_out">꼬리말 영역</h3>
-		<p class="txt_copyright">Copyright &copy; KakakoCompany All rights reserved.</p>
+		<p class="txt_copyright">Copyright &copy; Friends All rights reserved.</p>
 	</div>
 </footer>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+<!-- cdn -->
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
 <script src="js/data.js"></script>
 <script src="js/answer.js"></script>
+
+
 </body>
 </html>
