@@ -70,8 +70,5 @@
       $(target).removeClass(rclass);
     }
   }
-
-
-
 })(jQuery)
 

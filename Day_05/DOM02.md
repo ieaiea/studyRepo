@@ -1,6 +1,6 @@
 # DOM 탐색
-전 시간에 DOM에 대한 기본적인 이론은 정리했으니 진도 쭉쭉 나가볼게요     
-DOM은 트리 구조이기 때문에 부모 자식 형제등 탐색할 수 있습니다. 
+전 시간에 DOM에 대한 기본적인 이론은 정리했으니 진도 쭉쭉 나가볼게요
+DOM은 트리 구조이기 때문에 부모 자식 형제등 탐색할 수 있습니다.
 
 ## parentNode
 선택된 요소의 부모 노드를 탐색합니다.
@@ -81,7 +81,7 @@ console.log(ul.hasChildNodes()); // true
 var ul = document.querySelector('ul'); // ul을 찾아서 캐싱
 console.log(ul.childNodes()); // [text, li, text, li, text, li, text]
 ```
- 
+
 ## Sibling
 형제 노드를 탐색합니다. IE9 이상의 브라우저에서 동작합니다. Text Node로 반환됩니다.
 ```html
@@ -92,7 +92,7 @@ console.log(ul.childNodes()); // [text, li, text, li, text, li, text]
 </ul>
 
 var ul = document.querySelector('ul'); // ul을 찾아서 캐싱
-var li = document.getElementById('item_1'); 
+var li = document.getElementById('item_1');
 
 console.log(li.nextSibling);
 console.log(li.previousSibling);
