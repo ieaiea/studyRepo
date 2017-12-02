@@ -76,81 +76,40 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 <script>
-  var EventModule = EventModule || {};
-  // 클릭 이벤트
-  EventModule.click = {
-    imageModule : function(){
-      var $image = $('.image_box').find('img');
-      $image.on('click', function(e){
-        $(this).attr('src', 'http://cfile30.uf.tistory.com/image/020B89385098A6250657B6');
-        setTimeout(function(){
-          //  여기선 this가 또달라요
-          $(this).attr('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqq8VL4b8HQ_-eeAH5jmsIqGjX94Ei1Atlm970Pqc8SK1cE_1PjHidoA');
-        }.bind(this), 3000);
-      })
-    },
-    XandYModule : function(){
-      var $imageArea = $('#clickArea');
-      var showX = $('.showX');
-      var showY = $('.showY');
-      $imageArea.on('click', function(e){
-        showX.text(e.clientX);
-        showY.text(e.clientY);
-      });
-    }
-  };
-  // 셀렉트 이벤트
-  EventModule.select = {
-    checked : function(){
-      var $selectBox = $('.select').find('select');
-      var $seletedView = $('.seletedView');
-      $selectBox.on('change', function(e){
-        $seletedView.text($(this).find('option:selected').val());
-      });
-    }
-  };
-  EventModule.keyBoard = {
-    validate : function(){
-      var $idInput = $('#idInput');
-      var view =  $('#validateCheck');
-      $idInput.on('keyup', function(e){
-        if($(this).val().length < 4){
-          view.text('4글자이상 입력해주셔야합니다.');
-        }else{
-          view.text('');
+  (function($){
+
+    var EVENT = EVENT || {};
+    var $clickArea = $('.clickEvt');
+
+
+    EVENT.modules = {};
+    EVENT.modules.clickEvent = {
+        clickImg : function(){
+            var $imgBox = $clickArea.find('.image_box');
+            var $img = $imgBox.find('img');
+
+            $img.on('click', function(e){ // 이벤트위임
+            $(this).attr('src', 'http://cfile30.uf.tistory.com/image/020B89385098A6250657B6');
+            setTimeout(function(){ // 이벤트 큐
+              $(this).attr('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqq8VL4b8HQ_-eeAH5jmsIqGjX94Ei1Atlm970Pqc8SK1cE_1PjHidoA');
+            }.bind(this), 2000) // apply, call
+          });
         }
-      });
-    },
-    focus : function(){
-      var $one = $('#one');
-      var $two = $('#two');
-      $two.on('keyup', function(e){
-        if(e.keyCode === 13){
-          $one.focus();
-        }
-      });
-    }
-  };
-  EventModule.mouse = {
-    hoverAndOut : function(){
-      var $mouseArea = $('#mouseArea');
-      $mouseArea.on('mouseover', function(e){
-        $(this).text('마우스옴');
-      });
-      $mouseArea.on('mouseout', function(e){
-        $(this).text('마우스감');
-      });
-    }
-  };
-  EventModule.click.imageModule();
-  EventModule.click.XandYModule();
-  EventModule.select.checked();
-  EventModule.keyBoard.validate();
-  EventModule.keyBoard.focus();
-  EventModule.mouse.hoverAndOut();
+    };
+    EVENT.modules.selectEvent = function(){
+        var $selectArea = $('.select');
+        var $selectForm = $selectArea.find('select');
+        var $selectName = $selectArea.find('.seletedView');
+
+        $selectForm.on('change', function(e){
+          $selectName.text($(this).find("option:checked").val());
+        })
+    };
+
+    EVENT.modules.clickEvent.clickImg();
+    EVENT.modules.selectEvent();
+
+  })(jQuery)
 </script>
-
-
-
 </body>
 </html>
