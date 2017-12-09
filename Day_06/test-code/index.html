@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>프렌즈샵</title>
+    <link href="css/reset.css" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="dktest_wrap">
+    <header id="dktestHead" class="dktest_head">
+        <div class="wrap_tit"><h1 class="tit_main">CPDev</h1></div>
+        <div class="wrap_btn_nav">
+            <button class="btn_nav">
+                네비게이션
+            </button>
+        </div>
+        <div class="wrap_nav">
+            <h2 class="screen_out">메인 네비게이션 영역</h2>
+            <nav class="wrap_gnb">
+				<span class="logo_main">
+                    <h2>까꿍</h2>
+                    <button class="nav_close">닫기</button>
+                </span>
+                <span class="line_hr"></span>
+                <ul class="gnb">
+                    <li><a href="javascript:;" class="link_gnb">Menu1</a></li>
+                    <li><a href="javascript:;" class="link_gnb">Menu2</a></li>
+                    <li><a href="javascript:;" class="link_gnb">Menu3</a></li>
+                    <li><a href="javascript:;" class="link_gnb">Menu4</a></li>
+                </ul>
+            </nav>
+            <span class="dimmed_bg"></span>
+        </div>
+        <div class="wrap_btn_setting">
+            <button class="btn_setting">세팅</button>
+        </div>
+    </header>
+    <hr class="hide">
+    <main id="dktestMain" class="dktest_main">
+        <div id="cMain">
+            <article id="mArticle" class="article_main">
+                <h2 id="dktestBody" class="screen_out">테스트 본문 영역</h2>
+                <div class="wrap_visual">
+                    <h3 class="screen_out">슬라이딩 영역</h3>
+                    <div class="wrap_slide">
+                        <ul class="list_slide">
+                            <li>
+                                <img src="images/slide_item0.png" alt=""/>
+                            </li>
+                            <li>
+                                <img src="images/slide_item1.png" alt=""/>
+                            </li>
+                            <li>
+                                <img src="images/slide_item2.png" alt=""/>
+                            </li>
+                        </ul>
+                        <a href="javascript:;" class="btn_slide btn_prev">왼쪽으로 넘기기</a>
+                        <a href="javascript:;" class="btn_slide btn_next">오른쪽으로 넘기기</a>
+                        <div class="wrap_slide_nav">
+                            <ul class="list_slide_nav">
+                                <li class="on"></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap_friends">
+                    <h3 class="screen_out">캐릭터 상품 영역</h3>
+                    <div class="tit_friends">
+                        <select id="charSelect" class="select_friends">
+                            <option value="default">상품선택</option>
+                        </select>
+                        <label for="charSelect">캐릭터 상품</label>
+                    </div>
+                    <div class="total_items">
+                        총 <em class="emph_number"><span class="total_number">n</span>개</em>의 상품이 조회되었습니다.
+                    </div>
+                    <div class="wrap_list">
+                        <ul class="list_friends">
+                            <!-- 상품영역 -->
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+    <hr class="hide">
+</div>
+<footer id="dktestFoot" class="dktest_foot">
+    <div class="inner_foot">
+        <h3 class="screen_out">꼬리말 영역</h3>
+        <p class="txt_copyright">Copyright &copy; Friends All rights reserved.</p>
+    </div>
+</footer>
+
+
+<!-- 템플릿 -->
+<script id="list_option" type="text/x-handlebars-template">
+    <option value="{{title}}">{{title}}</option>
+</script>
+
+<script id="list_item" type="text/x-handlebars-template">
+    <li>
+        <a href="javascript:;" class="link_friends">
+            <span class="wrap_thumb">
+                <img src="images/{{images}}" class="thumb_items" alt=""/>
+                {{#unless stock}}
+                    <span class="ico_soldout">Sold out</span>
+                {{/unless}}
+            </span>
+            <strong class="tit_item">{{name}}</strong>
+            <span class="price_item">{{price}}원</span>
+        </a>
+    </li>
+</script>
+
+<!-- cdn -->
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+<script src="js/data.js"></script>
+<script src="js/answer.js"></script>
+
+
+</body>
+</html>
