@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>전화번호부</title>
+    <link rel="stylesheet" href="./asset/css/common.min.css">
+</head>
+<body>
+<h1>전화번호부</h1>
+<form action="#" id="registForm">
+    <fieldset>
+        <legend>등록</legend>
+        <div>
+            <span>이름</span>
+            <input type="text" id="registName" title="이름" autocomplete="off" required><br>
+            <span>전화번호</span>
+            <input type="tel" id="registNum" title="전화번호" pattern="\d{3}\d{3,4}\d{4}" autocomplete="off"
+                   placeholder="-없이 숫자만 입력" required>
+        </div>
+        <button type="submit">등록</button>
+    </fieldset>
+</form>
+<form action="#" id="searchForm">
+    <fieldset>
+        <legend>검색</legend>
+        <div>
+            <span>이름</span>
+            <input type="text" id="searchName" title="이름" autocomplete="off" required>
+        </div>
+        <button type="submit">검색</button>
+        <p id="result"></p>
+    </fieldset>
+</form>
+<form action="#" id="deleteForm">
+    <fieldset>
+        <legend>삭제</legend>
+        <div>
+            <span>이름</span>
+            <input type="text" id="deleteName" title="이름" autocomplete="off" required>
+        </div>
+        <button type="submit">삭제</button>
+    </fieldset>
+</form>
+<form action="#" id="modifyForm">
+    <fieldset>
+        <legend>수정</legend>
+        <div>
+            <span>기존이름</span>
+            <input type="text" id="originName" title="기존이름" autocomplete="off" required><br>
+            <span>기존번호</span>
+            <input type="tel" id="originNum" title="기존번호" pattern="\d{3}\d{3,4}\d{4}" placeholder="-없이 숫자만 입력"
+                   autocomplete="off" required><br>
+            <span>바꿀이름</span>
+            <input type="text" id="modifyName" title="바꿀이름" required><br>
+            <span>바꿀번호</span>
+            <input type="tel" id="modifyNum" title="바꿀번호" pattern="\d{3}\d{3,4}\d{4}" placeholder="-없이 숫자만 입력"
+                   autocomplete="off" required>
+        </div>
+        <button type="submit">수정</button>
+    </fieldset>
+</form>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</body>
+</html>
+<!-- 전화번호부
+	1. 이름, 전화번호를 추가 
+	2. 이름으로 검색시 -> 이름과 전화번호를 찍어준다.
+	3. 이름으로 삭제, 수정 가능 
+-->
+
+<script>
+  (function ($) {
+    var Person = (function () {
+      var Person = function (name, phone) {
+        this.name = name;
+        this.phone = phone;
+      };
+      Person.prototype.setData = function (name, phone) {
+        this.name = name;
+        this.phone = phone;
+      };
+      Person.prototype.getName = function () {
+        return this.name
+      };
+      Person.prototype.getPhone = function () {
+        return this.phone
+      };
+      return Person;
+    })();
+
+    var Pb = (function () {
+      var Pb = function (option) { // option 값으로 제어
+        this.memberList = [];
+        this.$registForm = option.registForm;
+        this.$searchForm = option.searchForm;
+        this.$deleteForm = option.deleteForm;
+        this.$modifyForm = option.modifyForm;
+        this.event(); // 만들어짐과 동시에 이벤트를 걸어줌
+      };
+
+      Pb.prototype.event = function () {
+        this.$registForm.on('submit', function (e) {
+          e.preventDefault();
+          var $nameInput = $('#registName');
+          var $phoneInput = $('#registNum');
+
+          this.registMember($nameInput.val(), $phoneInput.val());
+          this.resetInput($nameInput, $phoneInput);
+          this.showMember();
+        }.bind(this));
+
+        this.$searchForm.on('submit', function (e) {
+          e.preventDefault();
+          var $nameInput = $('#searchName');
+
+          this.searchMember($nameInput.val());
+          this.resetInput($nameInput);
+        }.bind(this));
+
+        this.$deleteForm.on('submit', function (e) {
+          e.preventDefault();
+          var $nameInput = $('#deleteName');
+
+          this.removeMember($nameInput.val()); // 삭제
+          this.resetInput($nameInput); // 리셋 인풋
+          this.showMember(); // 현재 멤버
+        }.bind(this));
+
+        this.$modifyForm.on('submit', function (e) {
+          e.preventDefault();
+          var $nameInput = $('#originName');
+
+          this.modifyMember($nameInput.val());
+          this.resetInput($nameInput); // 리셋 인풋
+          this.showMember(); // 현재 멤버
+        }.bind(this));
+      };
+
+      Pb.prototype.registMember = function(name, phone){ // 사람을 추가해주는 메서드
+        this.memberList.push(new Person(name, phone));
+      };
+      Pb.prototype.searchMember = function(name){ // 검색 메서드
+        var idx = this.findMemberIndex(name);
+        var $result = $('#result');
+
+        if(idx > -1){ // 검색된 애가 있으면 -1보다 크겠죠 ?
+          var member = this.memberList[idx];
+          $result.text('검색된 이름 : ' + member.getName() + ' 전화번호 : ' + member.getPhone());
+        }
+      };
+      Pb.prototype.removeMember = function(name){ // 삭제 메서드
+        var idx = this.findMemberIndex(name);
+
+        if(idx > -1){
+          this.memberList.splice(idx, 1);
+        }
+      };
+      Pb.prototype.modifyMember = function(name){
+        var idx = this.findMemberIndex(name);
+        var modifyNameInput = $('#modifyName');
+        var modifyPhoneInput = $('#modifyNum');
+
+        console.log(this.memberList[idx]);
+        if(idx > -1){
+          this.memberList[idx].setData(modifyNameInput.val(), modifyPhoneInput.val());
+        }
+      };
+      Pb.prototype.findMemberIndex = function(name){ // indexOf
+        var idx = -1; // 기본값 -1 못찾을시에 -1리턴
+        this.memberList.forEach(function(member, i){
+          if(name === member.getName()){
+            idx = i; // 찾으면 -1이 아닌값이 리턴
+          }
+        });
+        return idx;
+      };
+      Pb.prototype.resetInput = function(){ // Input의 값을 비워주는 메서드 값이 몇개가 들어올지 몰라서 arguments를 이용
+        [].forEach.call(arguments, function(item, idx){ // 메서드 빌려쓰기 유사배열이라서 forEach를 쓸 수 없음
+            $(item).val("");
+        })
+      };
+      Pb.prototype.showMember = function(){ // 현재 멤버 배열의 값을 보여줌
+        console.log(this.memberList);
+      };
+      return Pb;
+    })();
+
+    var option = { // 옵션값
+      registForm: $('#registForm'),
+      searchForm: $('#searchForm'),
+      deleteForm: $('#deleteForm'),
+      modifyForm: $('#modifyForm')
+    };
+
+    function run() { // 최초 시작
+      new Pb(option); // Pb 생성
+    }
+
+    run(); // 시작
+
+  })(jQuery)
+</script>
