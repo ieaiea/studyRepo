@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Day layout</title>
+    <style>
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,button{margin:0;padding:0}
+        fieldset,img{border:0 none}
+        dl,ul,ol,menu,li{list-style:none}
+        blockquote, q{quotes: none}
+        blockquote:before, blockquote:after,q:before, q:after{content:'';content:none}
+        input,select,textarea,button{vertical-align:middle}
+        input::-ms-clear{display:none}
+        button{border:0 none;background-color:transparent;cursor:pointer}
+        body{background:#fff}
+        body,th,td,input,select,textarea,button{font-size:12px;line-height:1.5;font-family:'돋움',dotum,sans-serif;color:#333} /* color값은 디자인가이드에 맞게사용 */
+        a{color:#333;text-decoration:none}
+        a:active, a:hover{text-decoration:underline}
+        a:active{background-color:transparent}
+        address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
+        .screen_out{overflow:hidden;position:absolute;width:0;height:0;line-height:0;text-indent:-9999px}
+        .wrap_scroll {
+            position: relative;
+            width: 200px;
+            height: 400px;
+            overflow: auto;
+            text-align: center;
+            line-height: 300px;
+            font-size: 2.5rem;
+            color: #fff;
+        }
+        .wrap_scroll .spiner{
+            position: fixed;
+            top: 170px;
+            left : 70px;
+            width: 50px;
+            height: 50px;
+            display: none;
+            border: 5px solid yellow; /* 기본적으로 스피너는 none으로 가려져있습니다 */
+            border-color: yellow transparent transparent;
+            border-radius: 50%;
+            animation : spin 1s linear infinite;
+        }
+        @keyframes spin {
+            100% {  transform: rotate(360deg);  }
+        }
+        .box {
+            width: 100%;
+            height: 300px;
+            border-top: 2px solid #000;
+            background: #cbcbcb;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap_scroll">
+    <div class="box">아이템</div>
+    <div class="box">아이템</div>
+    <div class="spiner"></div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<!-- 템플릿 -->
+<script id="box" type="text/x-handlebars-template">
+    <div class='box' style='background-color: #{{color}}'>{{name}}</div>
+</script>
+<script>
+  var ctx = $('.wrap_scroll');
+  var $maxHeight, $ctxScrollTop, ctxScrollHeight, color; // 변수 선언
+  var $spiner = $('.spiner'); // 스피너 추가
+  var box = $("#box").html();
+  var sTemplate = Handlebars.compile(box);
+
+  ctx.on('scroll', function (e){
+    $maxHeight = $(this).height(); // 박스 높이값
+    $ctxScrollTop = $(this).scrollTop(); // 스크롤 위치값
+    ctxScrollHeight = this.scrollHeight; // 스크롤포함 높이값
+
+    if (ctxScrollHeight - $ctxScrollTop === $maxHeight) {
+      getData(0);12
+    }
+  });
+
+  function getData(page){
+    $.ajax({
+      type: 'GET', // get 방식으로 요청
+      dataType: 'json', // json 타입
+      url: "http://localhost:3000/person?page="+page, // 데이터를 불러오는 json-server 주소입니다 .
+      beforeSend: function(){
+        $spiner.show();
+      }
+    }).done(function(data){
+      render(data);
+    }).fail(function(err){
+      if(err) throw err;
+    });
+  }
+  function render(data){
+    color = Math.floor((Math.random() * 999999) + 1); // 랜덤 color
+
+    setTimeout(function(){
+      data.forEach(function (value) { // 데이터의 갯수에 따라서 div를 추가해줬습니다 ㅎㅎ
+        ctx.append(sTemplate({"color" : color, "name" : value.name}));
+      });
+      $spiner.hide();
+    }, 1000);
+  }
+  /*var ctx = $('.wrap_scroll');
+  var $maxHeight, $ctxScrollTop, ctxScrollHeight, color; // 변수 선언
+  var $spiner = $('.spiner'); // 스피너 추가
+  var box = $("#box").html();
+  var sTemplate = Handlebars.compile(box);
+
+  ctx.on('scroll', function (e) {
+    $maxHeight = $(this).height(); // 박스 높이값
+    $ctxScrollTop = $(this).scrollTop(); // 스크롤 위치값
+    ctxScrollHeight = this.scrollHeight; // 스크롤포함 높이값
+
+    color = Math.floor((Math.random() * 999999) + 1); // 랜덤 color
+
+    if (ctxScrollHeight - $ctxScrollTop === $maxHeight) {
+      $.ajax({
+        type: 'GET', // get 방식으로 요청
+        dataType: 'json', // json 타입
+        url: "http://localhost:3000/person", // 데이터를 불러오는 json-server 주소입니다 .
+        beforeSend : function(){ // 요청을 보내기전
+          $spiner.show(); // 요청을 보내기전에 스피너를 보여줍니다.
+        }
+      })
+        .done(function (data) { // 성공시 호출될 함수
+          setTimeout(function () { // 1초의 딜레이를 주었습니다.
+            data.forEach(function (value) { // 데이터의 갯수에 따라서 div를 추가해줬습니다 ㅎㅎ
+              ctx.append(sTemplate({"color" : color, "name" : value.name}));
+            });
+            $spiner.hide(); // 요청이 마무리된후 스피너를 다시 가려줍니다.
+          }, 1000);
+        })
+        .fail(function (err) { // 실패했을때 불러질 함수
+          console.error('데이터 불러오기 실패');
+        });
+    }
+  });*/
+</script>
+</body>
+</html>

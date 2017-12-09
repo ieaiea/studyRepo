@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  (function () {
+    var req = new XMLHttpRequest(); // 주체
+    req.open('GET', 'http://localhost:3000/person'); // open 어디서 어떤방식으로 받겠다.
+    req.send(null); // 요청보낸다. post
+    req.onreadystatechange = function (e) {
+      // readyState : 4 응답완료 => DONE(서버 응답완료) 즉 응답처리가 끝나면
+      if (req.readyState === XMLHttpRequest.DONE) {
+        if (req.status === 200) { // 200 이면 정상
+          console.log('응답', JSON.parse(req.response));
+          var person = JSON.parse(req.response);
+          console.log(person[0]);
+          console.log(person[0].id);
+          console.log(person[0].name);
+        } else {
+          console.error('error!!');
+        }
+      }
+    }
+  })()
+</script>
+</body>
+</html>

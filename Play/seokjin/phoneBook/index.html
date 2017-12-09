@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>전화번호부</title>
+    <link rel="stylesheet" href="./asset/css/common.min.css">
+</head>
+<body>
+<h1>전화번호부</h1>
+<form action="#" id="registForm">
+    <fieldset>
+        <legend>등록</legend>
+        <div>
+            <span>이름</span>
+            <input type="text" id="registName" title="이름" autocomplete="off" required><br>
+            <span>전화번호</span>
+            <input type="tel" id="registNum" title="전화번호" pattern="\d{3}\d{3,4}\d{4}" autocomplete="off"
+                   placeholder="-없이 숫자만 입력" required>
+        </div>
+        <button type="submit">등록</button>
+    </fieldset>
+</form>
+<form action="#" id="searchForm">
+    <fieldset>
+        <legend>검색</legend>
+        <div>
+            <span>이름</span>
+            <input type="text" id="searchName" title="이름" autocomplete="off" required>
+        </div>
+        <button type="submit">검색</button>
+        <p id="result"></p>
+    </fieldset>
+</form>
+<form action="#" id="deleteForm">
+    <fieldset>
+        <legend>삭제</legend>
+        <div>
+            <span>이름</span>
+            <input type="text" id="deleteName" title="이름" autocomplete="off" required>
+        </div>
+        <button type="submit">삭제</button>
+    </fieldset>
+</form>
+<form action="#" id="modifyForm">
+    <fieldset>
+        <legend>수정</legend>
+        <div>
+            <span>기존이름</span>
+            <input type="text" id="originName" title="기존이름" autocomplete="off" required><br>
+            <span>바꿀이름</span>
+            <input type="text" id="modifyName" title="바꿀이름" required><br>
+            <span>바꿀번호</span>
+            <input type="tel" id="modifyNum" title="바꿀번호" pattern="\d{3}\d{3,4}\d{4}" placeholder="-없이 숫자만 입력"
+                   autocomplete="off" required>
+        </div>
+        <button type="submit">수정</button>
+    </fieldset>
+</form>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</body>
+</html>
+<!-- 전화번호부
+	1. 이름, 전화번호를 추가 
+	2. 이름으로 검색시 -> 이름과 전화번호를 찍어준다.
+	3. 이름으로 삭제, 수정 가능 
+-->
+<script>
+  (function ($) {
+
+    var Person = (function () { // 간편하고 많이쓰이는 모듈화
+      var Person = function (name, phone) {
+        this.name = name;
+        this.phone = phone;
+      };
+      Person.prototype.getName = function () {
+        return this.name;
+      };
+      Person.prototype.getPhone = function () {
+        return this.phone;
+      };
+      Person.prototype.setData = function (name, phone) {
+        this.name = name;
+        this.phone = phone;
+      };
+      return Person;
+    })();
+
+    var PhoneBook = (function () {
+      var PhoneBook = function (options) {
+        this.personList = [];
+        this.$registForm = options.registForm;
+        this.$searchForm = options.searchForm;
+        this.$deleteForm = options.deleteForm;
+        this.$modifyForm = options.modifyForm;
+        this.event();
+      };
+
+
+      PhoneBook.prototype.event = function () { // 이벤트는 이벤트만
+        this.$registForm.on('submit', function (e) {
+          e.preventDefault(); // FORM이 가진 기본이벤트 제거
+          this.addPerson(); // 추가 실행 form -> PhoneBook
+        }.bind(this));
+
+        this.$searchForm.on('submit', function (e) {
+          e.preventDefault();
+          this.searchPerson();
+        }.bind(this));
+      };
+
+      PhoneBook.prototype.addPerson = function () {
+        var $registName = $('#registName');
+        var $registNum = $('#registNum');
+
+        this.personList.push(new Person($registName.val(), $registNum.val()));
+        this.resetInput($registName, $registNum);
+        console.log(this.personList);
+      };
+      PhoneBook.prototype.searchPerson = function () {
+        var $searchName = $('#searchName');
+        var $result = $('#result');
+        var idx = this.findIdx($searchName.val());
+
+        if (idx > -1) { // 검색성공
+          var person = this.personList[idx];
+          this.render($result, person.getName() + ", " + person.getPhone());
+        }
+      };
+      PhoneBook.prototype.findIdx = function (name) {
+        var idx = -1;
+
+        this.personList.forEach(function (person, i) {
+          if (person.getName() === name) {
+            idx = i;
+          }
+        });
+        return idx; // 검색실패  - 1, 성공 성공한 idx
+      };
+      PhoneBook.prototype.render = function (selector, str) {
+        selector.text(str);
+      };
+
+      PhoneBook.prototype.resetInput = function(){
+        [].forEach.call(arguments, function(input, idx){ // call, apply
+            $(input).val("");
+        });
+        $(arguments[0]).focus();
+      };
+
+
+      return PhoneBook;
+    })();
+
+    var options = {
+      registForm: $("#registForm"),
+      searchForm: $("#searchForm"),
+      deleteForm: $("#deleteForm"),
+      modifyForm: $("#modifyForm")
+    };
+
+    function run() {
+      new PhoneBook(options);
+      // ajax data => 있으면  new PhoneBook(options); 없으면 ;
+    }
+
+    run();
+
+
+  })(jQuery)
+</script>
