@@ -1,5 +1,7 @@
 # 알아두면 좋은 ES6 문법들
 
+- 이벤트 루프 : https://www.youtube.com/watch?v=8aGhZQkoFbQ
+
 ## 1. block scope
 
 기존의 함수에 의한 스코프처럼 `{ }`으로 감싼 내부에 별도의 스코프가 생성된다.
