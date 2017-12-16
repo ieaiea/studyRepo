@@ -1,6 +1,6 @@
 # 알아두면 좋은 ES6 문법들
 
-- 이벤트 루프 : https://www.youtube.com/watch?v=8aGhZQkoFbQ
+- 이벤트 루프(동영상) : https://www.youtube.com/watch?v=8aGhZQkoFbQ
 
 ## 1. block scope
 
