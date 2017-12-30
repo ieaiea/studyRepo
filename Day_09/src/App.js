@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default class TodoList extends React.Component{
+export default class App extends React.Component{
     render(){
         return (
             <div>
-              TodoList
+                APP입니다.
             </div>
         )
     }
