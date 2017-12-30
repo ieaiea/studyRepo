@@ -1,9 +1,6 @@
 # React TodoList
 리액트 투두 리스트
 
-## 디자인 
-https://ovenapp.io/project/DnyAapfsf4XRBcu3ntLoBz5jfL4QaYQQ#LfcA7
-
 ## 환경구성 
 - server : Node.js
 - front : React.js
