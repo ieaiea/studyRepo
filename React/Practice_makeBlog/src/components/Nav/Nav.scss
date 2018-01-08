@@ -1,0 +1,14 @@
+.wrap_nav{
+  position: fixed;
+  margin-top: 60px;
+  width: 250px;
+  height: 100%;
+  right:0;
+  background-color: rgb(224, 224, 224);
+  -webkit-transition: right 0.5s; /* Safari 3.1 to 6.0 */
+  transition: right 0.5s;
+
+  @media (max-width: 800px)  {
+    right: -250px;
+  }
+}

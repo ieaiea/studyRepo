@@ -1,0 +1,17 @@
+{
+  "name": "exam_02",
+  "version": "1.0.0",
+  "description": "2일차 express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "appear",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

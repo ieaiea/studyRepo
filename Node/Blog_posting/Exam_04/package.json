@@ -1,0 +1,16 @@
+{
+  "name": "exam_04",
+  "version": "1.0.0",
+  "description": "url, post로 데이터 주고받기 ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "appear",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}

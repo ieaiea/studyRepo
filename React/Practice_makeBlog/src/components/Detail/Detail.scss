@@ -1,0 +1,38 @@
+.wrap_detail{
+  width: 90%;
+  margin: 5% auto;
+  .date_detail{
+    font-size: 1rem;
+    color: #969494;
+  }
+  .title_detail{
+    font-size: 2rem;
+  }
+  .txt_detail{
+    font-size: 1.2rem;
+  }
+  .wrap_author{
+    overflow: hidden;
+    margin-top: 10%;
+    width: 100%;
+    img {
+      float: left;
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+    }
+    .box_author{
+      float: left;
+      margin: 2px 0 0 10px;
+      .class_author{
+        display: block;
+        font-size: 1.3rem;
+        color: #ff6284;
+      }
+      .txt_author{
+        display: block;
+        font-size: 1rem;
+      }
+    }
+  }
+}
