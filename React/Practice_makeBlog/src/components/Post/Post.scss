@@ -1,0 +1,48 @@
+.list_post {
+  position: relative;
+  width: 100%;
+  li {
+    overflow: hidden;
+    margin-bottom: 3px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+  }
+  .title_post {
+    display: inline-block;
+    overflow: hidden;
+    float: left;
+    margin-left: 5px;
+    text-overflow: ellipsis;
+    width: 62%;
+    white-space: nowrap;
+    word-wrap: normal;
+  }
+  .date_post {
+    float: right;
+    margin-right: 10px;
+  }
+}
+
+// 포스트 컨텐츠일때
+.wrap_post{
+  width: 90%;
+  margin: 40px auto 0;
+  .title_content{
+    margin-bottom: 50px;
+    font-size: 22px;
+    font-weight: 400;
+    color: #ff6284;
+  }
+  .list_post{
+    li{
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 300;
+    }
+  }
+  @media (max-width: 700px) {
+    .title_content{
+      margin-bottom:35px;
+    }
+  }
+}

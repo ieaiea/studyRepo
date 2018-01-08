@@ -1,0 +1,20 @@
+.content_home{
+  overflow: hidden;
+  width: 90%;
+  margin: 45px auto 0;
+  .title_item{
+    margin-bottom: 5px;
+    font-size: 25px;
+    font-weight: 300;
+    color: #ff6284;
+  }
+  .wrap_item{
+    float: left;
+    width: 33.3%;
+  }
+  @media (max-width: 650px) {
+    .wrap_item{
+      width: 100%;
+    }
+  }
+}

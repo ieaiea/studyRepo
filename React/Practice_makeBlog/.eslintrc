@@ -1,0 +1,35 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "extends": "react",
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true
+    },
+    "rules": {
+      "indent": ["error", 2],
+      "no-unused-expressions": [0],
+      "semi": [0]
+    },
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "forOf": true,
+      "generators": false,
+      "modules": true,
+      "objectLiteralComputedProperties": true,
+      "objectLiteralDuplicateProperties": false,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true,
+      "jsx": false
+    }
+  }
+}

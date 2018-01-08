@@ -1,0 +1,23 @@
+.wrap_login{
+  .wrap_img{
+    overflow: hidden;
+    margin: 30px auto 0;
+    width: 50%;
+    border-radius: 100%;
+    img{
+      width: 100%;
+    }
+  }
+
+  .btn_login{
+    display: block;
+    margin: 10px auto 0;
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #ff6284;
+    color: white;
+    font-size:15px;
+    font-weight: bold;
+  }
+}

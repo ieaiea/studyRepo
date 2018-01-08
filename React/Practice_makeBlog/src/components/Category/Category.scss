@@ -1,0 +1,22 @@
+.wrap_category{
+  width: 90%;
+  margin: 20px auto 0;
+  .title_category{
+    width: 40%;
+    border-bottom: 1px solid #a09e9e;
+    font-size: 25px;
+    font-weight: 300;
+  }
+  .list_category{
+    width: 80%;
+    margin: 10px auto;
+    font-size: 20px;
+    font-weight: 300;
+    li {
+      width: 60%;
+    }
+    li:hover{
+      border-bottom: 1px solid #a09e9e;
+    }
+  }
+}
