@@ -1,6 +1,6 @@
 const message = {};
 
-message.buttons = ['오늘의 네이버', '오늘의 다음'];
+message.buttons = ['오늘의 네이버', '오늘의 다음', '직접검색할래요'];
 
 message.buttonsType = () => {
   return {
@@ -23,6 +23,7 @@ message.baseType = (text) => {
 
 message.baseText = (text) => {
   return {
+    type: 'text',
     message: {
       text: text
     }
@@ -50,13 +51,13 @@ message.photoType = (text, url_photo, label, url_button) => {
   }
 };
 
-message.messageButtonType = (text, label, url_button) => {
+message.messageButtonType = ({text, label, url}) => {
   return {
     message: {
-      text: text,
+      text,
       message_button: {
-        label: label,
-        url: url_button,
+        label,
+        url,
       }
     },
     keyboard: {
@@ -64,6 +65,12 @@ message.messageButtonType = (text, label, url_button) => {
       buttons: message.buttons
     }
   }
+};
+
+message.sendMessage = (res, type) => {
+  res.set({
+    'content-type': 'application/json'
+  }).send(JSON.stringify(type));
 };
 
 export default message;

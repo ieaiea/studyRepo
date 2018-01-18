@@ -1,5 +1,3 @@
-/*thumb = $(this).find("img").attr("src");*/
-
 const baseUrl = "http://comic.naver.com";
 
 export const todayNaver = ($) => {
