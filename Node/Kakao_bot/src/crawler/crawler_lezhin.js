@@ -1,27 +1,27 @@
-/*
 const puppeteer = require('puppeteer');
 
-(async () => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+export const todayLezin = async (url, callback) => {
   let title, link;
-  let new_text = '';
+  const browser = await puppeteer.launch({});
+  const page = await browser.newPage();
+  page.on('console', console.log);
 
-  await page.goto('https://www.lezhin.com/ko');
-  await page.waitForSelector('#home-todaycomic');
+  await page.goto(url);
 
-  await page.evaluate(() => {
-    const list = Array.from(document.querySelectorAll('.home-todaycomic li'));
+  const list = await page.evaluate(() => {
+    const context = Array.from(document.querySelectorAll('.home-todaycomic li'));
+    let new_text = '';
 
-    list.forEach((webtoon) => {
+    context.forEach((webtoon) => {
       title = webtoon.querySelector(".homelist-title span").textContent;
       link = webtoon.querySelector("a").getAttribute("href");
-      console.log(title);
-      /!*new_text += title + '\n' + link + '\n';*!/
+      new_text += title + '\n' + link + '\n';
     });
+    return new_text;
   });
+  console.log(list);
+  console.log('test');
+  callback(list);
+  await browser.close();
+};
 
-  browser.close();
-})();
-
-*/

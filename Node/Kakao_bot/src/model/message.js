@@ -1,6 +1,6 @@
 const message = {};
 
-message.buttons = ['오늘의 네이버', '오늘의 다음', '직접검색할래요'];
+message.buttons = ['직접검색할래요', '오늘의 네이버', '오늘의 다음'];
 
 message.buttonsType = () => {
   return {
@@ -68,6 +68,7 @@ message.messageButtonType = ({text, label, url}) => {
 };
 
 message.sendMessage = (res, type) => {
+  console.log('res', type);
   res.set({
     'content-type': 'application/json'
   }).send(JSON.stringify(type));
