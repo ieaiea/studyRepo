@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .line { overflow:hidden; }
+        .seat {
+            margin:2px; float:left;
+            width:30px; height:30px;
+            background:Red;
+            border-radius:3px;
+        }
+        .enable { background: Gray; }
+        .enable:hover { background: Black; }
+        .disable { background: Red; }
+    </style>
+    <body>
+
+    </body>
+    <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- 소켓 생성 -->
+    <script>
+        var socket = io.connect();
+
+        socket.on('reserve', function(data){
+          console.log('client reserve', data);
+          var $target = $('div[data-x = ' + data.x + ']' + '[data-y = ' + data.y + ']');
+          $target.removeClass('enable');
+          $target.addClass('disable');
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+          var onClickSeat = function(){
+            var x = $(this).attr('data-x');
+            var y = $(this).attr('data-y');
+
+            if(confirm('좌석을 예약 하시겠습니까?')){
+              $(this).off('click');
+              socket.emit('reserve',{ x : x, y : y});
+            }else{
+              alert('취소되었습니다.');
+            }
+          }
+
+          $.getJSON('/seats', {dummy : new Date().getTime()}, function(data){
+            console.log('새로 그림', data);
+            $.each(data, function(indexY, line){
+              var $line = $('<div></div>').addClass('line');
+              $.each(line, function(indexX, seat){
+                var $output = $('<div></div>', {
+                  'class' : 'seat',
+                  'data-x': indexX,
+                  'data-y': indexY
+                }).appendTo($line);
+
+                if(seat == 1){
+                  $output.addClass('enable').on('click', onClickSeat);
+                }else if(seat == 2){
+                  $output.addClass('disable');
+                }
+              })
+              $line.appendTo('body');
+            })
+          });
+        });
+
+    </script>
+</head>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Socket.io 예제</title>
+</head>
+<body>
+
+<div>
+    <input type="text" id="text">
+    <input type="button" id="btn" value="보내기">
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  window.onload = function () {
+    var button = document.getElementById('btn');
+    var text = document.getElementById('text');
+
+    button.addEventListener('click', function (e) {
+      console.log('클라이언트 쪽에서 보낸 메세지', text.value);
+      socket.emit('send message', text.value);
+    });
+
+    var socket = io.connect(); // 웹 소켓 서버에 연결
+
+    socket.on('new message', function (msg) {
+      console.log('서버쪽에서 받은 메세지', msg);
+    })
+  }
+</script>
+</body>
+</html>
